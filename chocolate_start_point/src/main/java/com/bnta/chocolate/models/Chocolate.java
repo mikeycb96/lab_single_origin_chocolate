@@ -1,19 +1,25 @@
 package com.bnta.chocolate.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 
 public class Chocolate {
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "cocoa_percentage")
     private int cocoaPercentage;
 
-
+    @ManyToOne
+    @JsonIgnoreProperties({"chocolates"})
+    @JoinColumn(name = "estate_id")
     private Estate estate;
 
     public Chocolate(String name, int cocoaPercentage, Estate estate) {

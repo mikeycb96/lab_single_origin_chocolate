@@ -10,16 +10,18 @@ import java.util.List;
 
 public class Estate {
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
+    @Column(name = "name")
     private String name;
 
-
+    @Column(name = "country")
     private String country;
 
-
+    @OneToMany(mappedBy = "estate")
+    @JsonIgnoreProperties({"estate"})
     private List<Chocolate> chocolates;
 
     public Estate(String name, String country) {
